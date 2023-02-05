@@ -6,14 +6,22 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     author_rating = models.IntegerField(default=0)
 
-    # def update_rating(self):
-    #     posts_rating = sum(Post.objects.filter(post__author=self.user).values('self.post__post_rating')) * 3
-    #     author_comments_rating = sum(
-    #         Comment.objects.filter(comment__author=self.user).values('self.comment__comment_rating'))
-    #     posts_comments_rating = sum(
-    #         Post.objects.filter(post__author=self.user).values('self.post__comment__comment_rating'))
-    #     self.author_rating = posts_rating + author_comments_rating + posts_comments_rating
-    #     self.save()
+    def update_rating(self):
+        posts_rating = Post.objects.filter(author=self).values('post_rating')
+        posts_rating_sum_3 =sum([rate['post_rating'] for rate in posts_rating])*3
+
+        author_comments_rating = Comment.objects.filter(commenter=self.user).values('comment_rating')
+        author_comments_rating_sum = sum([rate['comment_rating'] for rate in author_comments_rating])
+
+        posts_comments_rating = Post.objects.filter(author=self).values('comments__comment_rating')
+        posts_comments_rating_sum = 0
+        for i in posts_comments_rating:
+            vals = i['comments__comment_rating']
+            if vals:
+                posts_comments_rating_sum += vals
+
+        self.author_rating = posts_rating_sum_3 + author_comments_rating_sum + posts_comments_rating_sum
+        self.save()
 
 
 class Category(models.Model):
@@ -23,24 +31,24 @@ class Category(models.Model):
 class Post(models.Model):
     post_news = [('p', 'post'), ('n', 'news')]
 
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='posts')
     type = models.CharField(max_length=1, choices=post_news, default='p')
     post_created = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField('Category', through='PostCategory')
+    category = models.ManyToManyField('Category', through='PostCategory', related_name='posts')
     title = models.CharField(max_length=50)
     post_body = models.TextField()
     post_rating = models.IntegerField(default=0)
 
-    # def like(self):
-    #     self.post_rating += 1
-    #     self.save()
-    #
-    # def dislike(self):
-    #     self.post_rating -= 1
-    #     self.save()
-    #
-    # def preview(self):
-    #     return self.post_body[:123] + '...'
+    def like(self):
+        self.post_rating += 1
+        self.save()
+
+    def dislike(self):
+        self.post_rating -= 1
+        self.save()
+
+    def preview(self):
+        return self.post_body[:5] + '...'       #Change to 123 when finished
 
 
 class PostCategory(models.Model):
@@ -49,16 +57,16 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    commenter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     comment_body = models.TextField()
     comment_created = models.DateTimeField(auto_now_add=True)
     comment_rating = models.IntegerField(default=0)
 
-    # def like(self):
-    #     self.comment_rating += 1
-    #     self.save()
-    #
-    # def dislike(self):
-    #     self.comment_rating -= 1
-    #     self.save()
+    def like(self):
+        self.comment_rating += 1
+        self.save()
+
+    def dislike(self):
+        self.comment_rating -= 1
+        self.save()
