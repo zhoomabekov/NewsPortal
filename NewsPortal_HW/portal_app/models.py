@@ -48,7 +48,7 @@ class Post(models.Model):
         self.save()
 
     def preview(self):
-        return self.post_body[:5] + '...'       #Change to 123 when finished
+        return self.post_body[:123] + '...'
 
 
 class PostCategory(models.Model):
