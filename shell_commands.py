@@ -84,8 +84,9 @@ au2.update_rating()
 Author.objects.all().order_by('-author_rating').values('user__username','author_rating').first()
 
 # Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, основываясь на лайках/дислайках к этой статье.
-best_post = Post.objects.all().order_by('-post_rating').values('post_created', 'author__user__username', 'post_rating', 'title', Post.values().first()
+best_post = Post.objects.all().order_by('-post_rating').values('post_created', 'author__user__username', 'post_rating', 'title')[0]
+best_post['preview'] = Post.objects.get(title=best_post['title']).preview()
+best_post
 
-
-best_post['preview'] = posts_sorted.preview()).first()
 # Вывести все комментарии (дата, пользователь, рейтинг, текст) к этой статье.
+Comment.objects.filter(post_id=Post.objects.get(title=best_post['title']).id).values('comment_created', 'commenter', 'comment_rating', 'comment_body')
