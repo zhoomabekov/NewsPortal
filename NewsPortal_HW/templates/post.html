@@ -1,11 +1,17 @@
 {% extends 'flatpages/default.html' %}
 
+{% load custom_filters %}
+
 {% block title %}
-Title Test
+{{ post.title|censor }}
 {% endblock title %}
 
 
 {% block content %}
-<h5>{{ post.title }}</h5>
-{{ post.post_body }}
+<h1>{{ post.title|censor }}</h1>
+<h4 style="color:gray"> Автор: {{ post.author.user|default:'incognito' }} </h4>
+{{ post.post_created|date:'d.m.Y' }}
+<br>
+<br>
+<p align="justify"> {{ post.post_body|censor }} </p>
 {% endblock content %}

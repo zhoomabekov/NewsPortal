@@ -3,7 +3,7 @@ from.models import Post
 
 class PostsList(ListView):
     model = Post
-    ordering = 'title'
+    ordering = '-post_created'
     template_name = 'posts.html'
     context_object_name = 'posts'
 
