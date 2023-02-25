@@ -38,6 +38,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     post_body = models.TextField()
     post_rating = models.IntegerField(default=0)
+    _preview = models.CharField(max_length=200, null=True, db_column='preview')
 
     def like(self):
         self.post_rating += 1
@@ -47,9 +48,18 @@ class Post(models.Model):
         self.post_rating -= 1
         self.save()
 
+    @property
     def preview(self):
-        return self.post_body[:123] + '...'
+        return self._preview
 
+    @preview.setter
+    def preview(self):
+        self._preview = self.post_body[:123] + '...'
+        return self._preview
+        self.save()
+
+    def __str__(self):
+        return f'{self.title}: {self.post_body[:20]}...'
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

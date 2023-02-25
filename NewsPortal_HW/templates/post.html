@@ -1,0 +1,11 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Title Test
+{% endblock title %}
+
+
+{% block content %}
+<h5>{{ post.title }}</h5>
+{{ post.post_body }}
+{% endblock content %}
