@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'portal_app',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'fpages'
+    'fpages',
+    'django_filters', #нужно для фильтрации новостей на сайте
 ]
 
 SITE_ID = 1 #этот параметр важет для приложения django.contrib.sites

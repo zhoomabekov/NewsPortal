@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -29,10 +30,10 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    post_news = [('p', 'post'), ('n', 'news')]
+    post_news = [('a', 'article'), ('n', 'news')]
 
     author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='posts')
-    type = models.CharField(max_length=1, choices=post_news, default='p')
+    type = models.CharField(max_length=1, choices=post_news, default='a')
     post_created = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField('Category', through='PostCategory', related_name='posts')
     title = models.CharField(max_length=50)
@@ -60,6 +61,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}: {self.post_body[:20]}...'
+
+    # Подсказать Django, какую страницу нужно открыть после создания товара через форму.
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
