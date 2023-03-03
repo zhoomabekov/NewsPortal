@@ -22,6 +22,7 @@ class PostsList(ListView):
         context['filterset'] = self.filterset
         return context
 
+
 class PostsSearch(ListView):
     model = Post
     ordering = '-post_created'
@@ -38,6 +39,7 @@ class PostsSearch(ListView):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
         return context
+
 
 class PostDetail(DetailView):
     model = Post
@@ -59,12 +61,11 @@ class PostCreate(CreateView):
         return super().form_valid(form)
 
 
-
-
 class PostUpdate(UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
+
 
 class PostDelete(DeleteView):
     model = Post

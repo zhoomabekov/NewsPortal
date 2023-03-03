@@ -36,7 +36,7 @@ class Post(models.Model):
     type = models.CharField(max_length=1, choices=post_news, default='a')
     post_created = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField('Category', through='PostCategory', related_name='posts')
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, unique=True)
     post_body = models.TextField()
     post_rating = models.IntegerField(default=0)
     _preview = models.CharField(max_length=200, null=True, db_column='preview')
