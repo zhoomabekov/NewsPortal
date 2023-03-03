@@ -1,8 +1,9 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from.models import Post
+from .models import Post
 from .filters import PostFilter
-from .forms import  ArticleForm
+from .forms import PostForm
+
 
 class PostsList(ListView):
     model = Post
@@ -27,10 +28,22 @@ class PostDetail(DetailView):
     template_name = 'post.html'
     context_object_name = 'post'
 
+
 class ArticleCreate(CreateView):
-    form_class = ArticleForm
+    form_class = PostForm
     model = Post
-    template_name = 'post_edit.html'
+    template_name = 'article_edit.html'
+
+    def form_valid(self, form):
+        work = form.save(commit=False)
+        work.type = 'a'
+        return super().form_valid(form)
+
+
+class NewsCreate(CreateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'news_edit.html'
 
     def form_valid(self, form):
         work = form.save(commit=False)
@@ -41,11 +54,10 @@ class ArticleCreate(CreateView):
 # class PostUpdate(UpdateView):
 #     form_class = PostForm
 #     model = Post
-#     template_name = 'post_edit.html'
+#     template_name = 'news_edit.html'
 #
 # # Представление удаляющее товар.
 # class PostDelete(DeleteView):
 #     model = Post
 #     template_name = 'post_delete.html'
 #     success_url = reverse_lazy('post_list')
-
