@@ -9,6 +9,10 @@ News
 {% block content %}
     <h1 style="color:#1b73ff">Все новости </h1>
     <br>
+    <form action="" method="get">
+        {{ filterset.form.as_p }}
+        <input type = "submit" value = "Найти" />
+    </form>
 
     {% for post in posts %}
         <h3> {{ post.title|censor }}</h3>

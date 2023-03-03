@@ -10,7 +10,7 @@ class PostsList(ListView):
     ordering = '-post_created'
     template_name = 'posts.html'
     context_object_name = 'posts'
-    paginate_by = 1
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -22,6 +22,22 @@ class PostsList(ListView):
         context['filterset'] = self.filterset
         return context
 
+class PostsSearch(ListView):
+    model = Post
+    ordering = '-post_created'
+    template_name = 'posts_search.html'
+    context_object_name = 'posts_search'
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = PostFilter(self.request.GET, queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filterset'] = self.filterset
+        return context
 
 class PostDetail(DetailView):
     model = Post
@@ -29,35 +45,28 @@ class PostDetail(DetailView):
     context_object_name = 'post'
 
 
-class ArticleCreate(CreateView):
+class PostCreate(CreateView):
     form_class = PostForm
     model = Post
-    template_name = 'article_edit.html'
+    template_name = 'post_edit.html'
 
     def form_valid(self, form):
-        work = form.save(commit=False)
-        work.type = 'a'
+        post = form.save(commit=False)
+        if 'article' in self.request.path:
+            post.type = 'a'
+        elif 'news' in self.request.path:
+            post.type = 'n'
         return super().form_valid(form)
 
 
-class NewsCreate(CreateView):
+
+
+class PostUpdate(UpdateView):
     form_class = PostForm
     model = Post
-    template_name = 'news_edit.html'
+    template_name = 'post_edit.html'
 
-    def form_valid(self, form):
-        work = form.save(commit=False)
-        work.type = 'n'
-        return super().form_valid(form)
-
-# # Добавляем представление для изменения товара.
-# class PostUpdate(UpdateView):
-#     form_class = PostForm
-#     model = Post
-#     template_name = 'news_edit.html'
-#
-# # Представление удаляющее товар.
-# class PostDelete(DeleteView):
-#     model = Post
-#     template_name = 'post_delete.html'
-#     success_url = reverse_lazy('post_list')
+class PostDelete(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('posts_list')
