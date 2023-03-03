@@ -2,18 +2,19 @@
 {% load custom_filters %}
 
 {% block title %}
-News
+Поиск статей/новостей
 {% endblock title %}
 
 
 {% block content %}
-    <h1 style="color:#1b73ff">Все новости </h1>
+    <h1 style="color:#1b73ff">Поиск статей/новостей</h1>
     <br>
     <form action="" method="get">
         {{ filterset.form.as_p }}
         <input type = "submit" value = "Найти" />
     </form>
-
+<br>
+<br>
     {% for post in posts %}
         <h3> {{ post.title|censor }}</h3>
         {{ post.post_created|date:'d.m.Y' }}

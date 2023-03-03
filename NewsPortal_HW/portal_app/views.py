@@ -26,7 +26,7 @@ class PostsSearch(ListView):
     model = Post
     ordering = '-post_created'
     template_name = 'posts_search.html'
-    context_object_name = 'posts_search'
+    context_object_name = 'posts'
     paginate_by = 10
 
     def get_queryset(self):
