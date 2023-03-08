@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import PostsList, PostsSearch, PostDetail, PostCreate, PostUpdate, PostDelete
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='posts/')),  #instead of error page, it will redirect to the posts list
     path('posts/', PostsList.as_view(), name='posts_list'),
     path('posts/<int:pk>', PostDetail.as_view(), name='post_detail'),
     path('posts/search/', PostsSearch.as_view(), name='posts_search_list'),

@@ -1,10 +1,9 @@
 from django import forms
-from django.core.exceptions import ValidationError
-
-from .models import Post
+from .models import Post,Author
 
 class PostForm(forms.ModelForm):
-    author_user_username = forms.TextInput()
+    author = forms.ModelChoiceField(queryset=Author.objects.all(), label='Author name',
+                                    empty_label=None, to_field_name='user')
     title = forms.CharField(max_length=50)
     post_body = forms.CharField(min_length=20, widget=forms.Textarea(attrs={'rows': 5, 'cols': 100}))
     # добавил widget для расширения поля для ввода текста
@@ -17,5 +16,7 @@ class PostForm(forms.ModelForm):
             'title',
             'post_body'
         ]
-
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)                    #переопределяем init для того, чтобы использовать USERNAME, а не AUTHOR
+        self.fields['author'].label_from_instance = lambda obj: obj.user.username
 
