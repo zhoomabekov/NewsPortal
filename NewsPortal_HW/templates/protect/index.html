@@ -5,7 +5,7 @@
 <div> Здесь может содержаться персональная информация для каждого пользователя </div>
 
 <button> <a href="sign/logout/">Выйти</a> </button>
-{% if is_not_premium %}
-<button> <a href="sign/upgrade/"> Хочу Premium!</a> </button>
+{% if is_not_author %}
+<button> <a href="sign/upgrade/"> Хочу стать Автором!</a> </button>
 {% endif %}
 {% endblock %}

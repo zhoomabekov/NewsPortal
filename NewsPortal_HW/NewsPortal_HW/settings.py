@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'fpages',
     'django_filters',  # нужно для фильтрации новостей на сайте
 
+    'sign',
+    'protect',
+
     # needed for allauth:
     'allauth',
     'allauth.account',
@@ -147,7 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/posts/'
 
 SITE_ID = 1
 
