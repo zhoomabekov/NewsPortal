@@ -1,0 +1,53 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+News. {{ category.name }}
+{% endblock title %}
+
+
+{% block content %}
+    <h1 style="color:#1b73ff">Все новости в категории "{{ category.name }}"</h1>
+    <form method="POST" action="{% url 'subscribe_category' category_id=category.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Подписаться</button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <br>
+
+    {% for post in posts %}
+        <a href="{% url 'post_detail' pk=post.id %}">
+        <h3>{{ post.title|censor }}</h3>
+        </a>
+        {{ post.post_created|date:'d.m.Y' }}
+        <h6> {{ post.post_body|truncatewords:20|censor }} </h6>
+        <hr>
+    {% endfor %}
+
+<!--Указание первой и предыдущей стр-->
+        {% if page_obj.has_previous %}
+            <a href="?page=1">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a href="?page={{ page_obj.previous_page_number }}"> {{ page_obj.previous_page_number }} </a>
+            {% endif %}
+        {% endif %}
+<!--Указание текущей стр-->
+        {{ page_obj.number }}
+<!--Указание следующей и последней стр-->
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            {% if page_obj.next_page_number != paginator.num_pages %}
+                ...
+                <a href="?page={{ paginator.num_pages }}"> {{ paginator.num_pages }} </a>
+            {% endif %}
+        {% endif %}
+
+{% endblock content %}

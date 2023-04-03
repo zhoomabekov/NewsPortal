@@ -9,7 +9,15 @@
 
 {% block content %}
 <h1>{{ post.title|censor }}</h1>
-<h4 style="color:gray"> Автор: {{ post.author.user|default:'incognito' }} </h4>
+<h4 style="color:gray"> Автор: {{ post.author.user|default:'incognito' }}<br>
+Категория:
+{% if post.category.exists %}
+    {% for category in post.category.all %}
+      {{ category.name }},
+    {% endfor %}
+{% endif %} </h4>
+
+<br>
 {{ post.post_created|date:'d.m.Y' }}
 <br>
 <br>

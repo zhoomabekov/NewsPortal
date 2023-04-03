@@ -7,11 +7,19 @@ News
 
 
 {% block content %}
+    Категории:
+    {% for category in categories %}
+        <a href="{% url 'posts_in_category' category.pk %}">{{ category.name }}</a>{% if not forloop.last %},{% endif %}
+    {% endfor %}
+
     <h1 style="color:#1b73ff">Все новости </h1>
     <br>
 
+
     {% for post in posts %}
-        <h3> {{ post.title|censor }}</h3>
+        <a href="{% url 'post_detail' pk=post.id %}">
+        <h3>{{ post.title|censor }}</h3>
+        </a>
         {{ post.post_created|date:'d.m.Y' }}
         <h6> {{ post.post_body|truncatewords:20|censor }} </h6>
         <hr>

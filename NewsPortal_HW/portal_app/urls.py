@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import PostsList, PostsSearch, PostDetail, PostCreate, PostUpdate, PostDelete
+from .views import PostsList, PostsSearch, PostDetail, PostCreate, PostUpdate, PostDelete, PostsListInCategory, \
+    SubscribeCategoryView
 from django.views.generic import RedirectView
 
 urlpatterns = [
@@ -16,5 +17,6 @@ urlpatterns = [
     path('news/<int:pk>/update/', PostUpdate.as_view(), name='news_update'),
     path('news/<int:pk>/delete/', PostDelete.as_view(), name='news_delete'),
 
-
+    path('category/<int:category_id>/', PostsListInCategory.as_view(), name='posts_in_category'),
+    path('category/<int:category_id>/subscribe/', SubscribeCategoryView.as_view(), name='subscribe_category'),
 ]

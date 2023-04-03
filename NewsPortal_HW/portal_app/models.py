@@ -27,6 +27,14 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=20, unique=True)
+    subscriber = models.ManyToManyField('Subscriber', through='CategorySubscriber', related_name='subscribers')
+
+class Subscriber(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+class CategorySubscriber(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subscriber = models.ForeignKey(Subscriber, on_delete=models.CASCADE)
 
 
 class Post(models.Model):
@@ -62,7 +70,7 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.title}: {self.post_body[:20]}...'
 
-    # Подсказать Django, какую страницу нужно открыть после создания товара через форму.
+    # Подсказать Django, какую страницу нужно открыть после создания инстанса через форму.
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
@@ -85,3 +93,4 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rating -= 1
         self.save()
+

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s$pv+!re_d0^4hxk*gj7rukg22qqrzk^$q=nl8w=4m$bjex3)z'
+MY_EMAIL = os.getenv('MY_EMAIL')
+MY_PASSWORD = os.getenv('MY_PASSWORD')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,11 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'NewsPortal_HW',
-    'portal_app',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'fpages',
-    'django_filters',  # нужно для фильтрации новостей на сайте
+    'django_filters',  # needed for news filtering on the site
+
+    'portal_app.apps.PortalAppConfig',  # требование для работы с СИГНАЛАМИ
 
     'sign',
     'protect',
@@ -55,6 +60,7 @@ INSTALLED_APPS = [
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
 ]
+
 
 SITE_ID = 1  # этот параметр важен для приложения django.contrib.sites
 
@@ -142,7 +148,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [ BASE_DIR / 'static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -159,8 +165,17 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 #Чтобы allauth распознал нашу форму как ту, что должна выполняться вместо формы по умолчанию,
 # необходимо добавить строчку в файл настроек проекта settings.py:
 ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = MY_EMAIL
+EMAIL_HOST_PASSWORD = MY_PASSWORD
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@yandex.com'    # allauth будет использовать его
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True                     # переходя по ссылке из имейла не нужно дополнительно кликать на что-то
