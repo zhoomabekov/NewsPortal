@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import ForeignKey
 from django.urls import reverse
 
 
@@ -27,7 +28,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=20, unique=True)
-    subscriber = models.ManyToManyField('Subscriber', through='CategorySubscriber', related_name='subscribers')
+    subscribers = models.ManyToManyField('Subscriber', through='CategorySubscriber', related_name='subscribed_categories')
 
 class Subscriber(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
@@ -43,7 +44,7 @@ class Post(models.Model):
     author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='posts')
     type = models.CharField(max_length=1, choices=post_news, default='a')
     post_created = models.DateTimeField(auto_now_add=True)
-    category = models.ManyToManyField('Category', through='PostCategory', related_name='posts')
+    categories = models.ManyToManyField('Category', through='PostCategory', related_name='posts')
     title = models.CharField(max_length=50, unique=True)
     post_body = models.TextField()
     post_rating = models.IntegerField(default=0)

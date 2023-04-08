@@ -11,8 +11,8 @@
 <h1>{{ post.title|censor }}</h1>
 <h4 style="color:gray"> Автор: {{ post.author.user|default:'incognito' }}<br>
 Категория:
-{% if post.category.exists %}
-    {% for category in post.category.all %}
+{% if post.categories.exists %}
+    {% for category in post.categories.all %}
       {{ category.name }},
     {% endfor %}
 {% endif %} </h4>

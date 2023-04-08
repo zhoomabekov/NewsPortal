@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+За прошедшую неделю в категории "{{ category_name }}" были опубликованы следующие посты:
+{% for post in posts %}
+    <a href="http://127.0.0.1:8000{% url 'post_detail' pk=post.id %}">
+
+    <h3>{{ post.title }}</h3>
+    </a>
+{% endfor %}
+
+</body>
+</html>

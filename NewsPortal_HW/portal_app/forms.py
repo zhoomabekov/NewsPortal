@@ -13,11 +13,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = [
-            'category',
+            'categories',
             'title',
             'post_body'
         ]
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)                    #переопределяем init для того, чтобы использовать названия Категорий
-        self.fields['category'].label_from_instance = lambda obj: obj.name
+        self.fields['categories'].label_from_instance = lambda obj: obj.name
 

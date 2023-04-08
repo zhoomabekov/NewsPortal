@@ -42,13 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'portal_app.apps.PortalAppConfig',  # требование для работы с СИГНАЛАМИ
     'NewsPortal_HW',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'fpages',
     'django_filters',  # needed for news filtering on the site
-
-    'portal_app.apps.PortalAppConfig',  # требование для работы с СИГНАЛАМИ
 
     'sign',
     'protect',
@@ -59,6 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
+    'django_apscheduler',
 ]
 
 
@@ -163,7 +163,7 @@ SITE_ID = 1
 # Регистрация и вход по почте
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
@@ -179,3 +179,6 @@ EMAIL_USE_SSL = True
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@yandex.com'    # allauth будет использовать его
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True                     # переходя по ссылке из имейла не нужно дополнительно кликать на что-то
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds

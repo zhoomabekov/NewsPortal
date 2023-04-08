@@ -30,6 +30,7 @@ class PostsList(PermissionRequiredMixin, ListView):
         context['categories'] = Category.objects.all()
         return context
 
+
 class PostsSearch(PermissionRequiredMixin, ListView):
     permission_required = ('portal_app.view_post')
     model = Post
@@ -71,9 +72,8 @@ class PostCreate(PermissionRequiredMixin, CreateView):
         elif 'news' in self.request.path:
             post.type = 'n'
         post.save()
-        form.save_m2m() # saving many-to-many relationships if any
+        form.save_m2m()  # saving many-to-many relationships if any
         return super().form_valid(form)
-
 
 
 class PostUpdate(PermissionRequiredMixin, UpdateView):
@@ -89,14 +89,16 @@ class PostDelete(PermissionRequiredMixin, DeleteView):
     template_name = 'post_delete.html'
     success_url = reverse_lazy('posts_list')
 
+
 class PostsListInCategory(PostsList):
     template_name = 'posts_in_category.html'
+
     def get_queryset(self):
         queryset = super().get_queryset()
         category_id = self.kwargs.get('category_id')
         if category_id:
             category = get_object_or_404(Category, id=category_id)
-            queryset = queryset.filter(category=category)
+            queryset = queryset.filter(categories=category)
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -112,9 +114,7 @@ class SubscribeCategoryView(View):
         category_id = self.kwargs['category_id']
         category = Category.objects.get(pk=category_id)
 
-
         subscriber = request.user.subscriber
-        # CategorySubscriber.objects.create(category=category, subscriber=subscriber)
         subscription, created = CategorySubscriber.objects.get_or_create(category=category, subscriber=subscriber)
         # If the subscription already exists, display a warning message
         if not created:
@@ -124,15 +124,8 @@ class SubscribeCategoryView(View):
         # If the subscription is new, display a success message
         messages.success(request, 'You have successfully subscribed to this category.')
 
-        # # Send an email confirmation to the subscriber
-        # subject = f'Подтверждение подписки на категорию: {category.name}'
-        # message = 'Ура, подписка успешна!'
-        # from_email = 'zhoomabekov@yandex.com'
-        # recipient_list = [subscriber.user.email]
-        # send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
-
-
         return redirect('posts_in_category', category_id=category.id)
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -151,4 +144,3 @@ def login_view(request):
     else:
         # ...render login form...
         return render(request, 'login.html', context)
-

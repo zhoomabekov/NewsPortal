@@ -1,36 +1,43 @@
 from django.contrib.auth.signals import user_logged_in
-from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.db.models.signals import post_save, m2m_changed, pre_save
 from django.dispatch import receiver
-from .models import Subscriber, CategorySubscriber, PostCategory
-from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.template.loader import render_to_string
+from django.conf import settings
+from datetime import datetime
+
+from .models import Subscriber, CategorySubscriber, Post, Category
+from django.core.mail import send_mail, EmailMultiAlternatives
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 MY_EMAIL = os.getenv('MY_EMAIL')
 
-@receiver(post_save, sender=PostCategory)
-def new_post_email_to_subscribers(sender, instance, created, **kwargs):
-    print('sender=PostCategory')
-    if created:  # Only execute the following code when a new PostCategory instance is created
-        post = instance.post
-        title = post.title
-        author = post.author.user.username
-        category = instance.category
-        print(f'Author: {author} and Category: {category.name}')
 
-        # Get the subscribers for the category of the post
-        subscribers = CategorySubscriber.objects.filter(category=category)
+@receiver(m2m_changed, sender=Post.categories.through)
+def new_post_email_to_subscribers(sender, instance, action, pk_set, **kwargs):
+    if action == 'post_add':
+        title = instance.title
+        author_name = instance.author.user.username
 
-        # Extract the email addresses from the subscribers
-        recipient_list = [subscriber.user.email for subscriber in subscribers]
-        print(recipient_list)
+        for i in range(len(pk_set)):        # going through each of categories
+            category_id = list(pk_set)[i]
+            category = Category.objects.get(pk=category_id)
 
-        # Send an email notification to the subscribers
-        subject = f'Новая статься в категории: {category.name}'
-        message = f'Новая статья {title} от {author} в категории: {category.name}'
-        from_email = MY_EMAIL + '@yandex.com'
-        send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
+            # Get the subscribers for the category of the post
+            subscribers = category.subscribers.all() #subscribers is a related name, defined in the Model
+            # Extract the email addresses from the subscribers
+            recipient_list = [subscriber.user.email for subscriber in subscribers]
+
+            # Send an email notification to the subscribers
+            subject = f'Новая статься в категории: {category.name}'
+            message = f'Новая статья {title} от {author_name} в категории: {category.name}'
+            from_email = MY_EMAIL + '@yandex.com'
+            send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
+
 
 # Этот сигнал нужен для создания объекта Подписчик (если токого нет), когда пользователь логинится
 @receiver(user_logged_in)
@@ -51,22 +58,35 @@ def subscription_confirmation_email(sender, instance, **kwargs):
     recipient_list = [subscriber.user.email]
     send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
 
+@receiver(post_save, sender=User)
+def welcome_email(sender, instance, **kwargs):
+    print(f'Welcome_email works! New user with email {instance.email} is signed up!')
 
-# @receiver(post_save, sender=Post)
-# def new_post_email_to_subscribers(sender, instance, **kwargs):
-#     title = instance.title
-#     author = instance.author.user.username
-#     category = instance.category.name
-#     # Get the subscribers for the category of the post
-#     subscribers = CategorySubscriber.objects.filter(category=instance.category)
-#
-#     # Extract the email addresses from the subscribers
-#     recipient_list = [subscriber.user.email for subscriber in subscribers]
-#
-#
-#     # Send an email notifica to the subscribers
-#     subject = f'Новая статься в категории: {category}'
-#     message = f'Новая статья {title} от {author} в категории: {category}'
-#     from_email = MY_EMAIL + '@yandex.com'
-#     send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
+    html_content = render_to_string(
+        'account/welcome_new_user.html',
+        {
+            'user': instance,
+        }
+    )
 
+    msg = EmailMultiAlternatives(
+        subject='Регистрация успешна!',
+        body=f'''{instance.username}, добро пожаловать в Новостной Портал!
+             Вы зарегистрировались при помощи почтового ящика: {instance.email}''',
+        #Body текст будет выслан, если не сработает HTML версия
+        from_email=MY_EMAIL + '@yandex.com',
+        to=[instance.email],  # это то же, что и recipients_list
+    )
+    msg.attach_alternative(html_content, "text/html")  # добавляем html
+
+    msg.send()  # отсылаем
+
+    return redirect(settings.LOGIN_URL)
+
+@receiver(pre_save, sender=Post)
+def limit_check(sender, instance, **kwargs):
+    if not instance.pk: #нас интересуют только новые статьи, поэтому убеждаемся что статьи НЕТ в базе
+        today = datetime.now().date()
+        author_posts_today = len(Post.objects.filter(post_created__date=today, author=instance.author))
+        if author_posts_today >= 3:
+            raise ValidationError("Превышено ограничение в 3 поста/день")
