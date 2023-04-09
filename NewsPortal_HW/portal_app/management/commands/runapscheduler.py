@@ -71,7 +71,9 @@ class Command(BaseCommand):
         # добавляем работу нашему задачнику
         scheduler.add_job(
             weekly_notifier,
-            trigger=CronTrigger(second="*/30"),
+            trigger=CronTrigger(
+                day_of_week="mon", hour="00", minute="01"
+            ),
             id="weekly_notifier",  # уникальный айди
             max_instances=1,
             replace_existing=True,
