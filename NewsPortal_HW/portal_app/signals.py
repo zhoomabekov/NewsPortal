@@ -32,11 +32,24 @@ def new_post_email_to_subscribers(sender, instance, action, pk_set, **kwargs):
             # Extract the email addresses from the subscribers
             recipient_list = [subscriber.user.email for subscriber in subscribers]
 
-            # Send an email notification to the subscribers
-            subject = f'Новая статься в категории: {category.name}'
-            message = f'Новая статья {title} от {author_name} в категории: {category.name}'
-            from_email = MY_EMAIL + '@yandex.com'
-            send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
+            html_content = render_to_string(
+                'new_post_email_to_subscribers.html',
+                {
+                    'post': instance,
+                    'category': category
+                }
+            )
+
+            msg = EmailMultiAlternatives(
+                subject=f'Новая статья в категории "{category.name}"',
+                body='К сожалению, возникли проблемы с рендерингом HTML',
+                # Body текст будет выслан, если не сработает HTML версия
+                from_email=MY_EMAIL + '@yandex.com',
+                to=recipient_list,  # это то же, что и recipients_list
+            )
+            msg.attach_alternative(html_content, "text/html")  # добавляем html
+
+            msg.send()  # отсылаем
 
 
 # Этот сигнал нужен для создания объекта Подписчик (если токого нет), когда пользователь логинится
@@ -60,8 +73,6 @@ def subscription_confirmation_email(sender, instance, **kwargs):
 
 @receiver(post_save, sender=User)
 def welcome_email(sender, instance, **kwargs):
-    print(f'Welcome_email works! New user with email {instance.email} is signed up!')
-
     html_content = render_to_string(
         'account/welcome_new_user.html',
         {

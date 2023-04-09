@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<pre style="line-height: 1;"><span style="font-family: Arial, Helvetica, sans-serif;">Доброго времени суток,
+Спешим сообщить Вам о том, что была опубликована новая статья в категории  "{{ category.name }}".</span></pre>
+<p><span style="font-family: Arial, Helvetica, sans-serif;"><br></span></p>
+<p style="line-height: 1;"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; color: rgb(61, 142, 185);"><strong> {{ post.title }} </strong></span></p>
+<p style="line-height: 1;"><span style="font-family: Arial, Helvetica, sans-serif;"> {{ post.post_body|truncatewords:20 }} </span></p>
+<p style="line-height: 1;"><span style="font-family: Arial, Helvetica, sans-serif;"><a href="http://127.0.0.1:8000{% url 'post_detail' pk=post.id %}">Читать всю статью.</a>
+<p style="line-height: 1;"><br></p>
+<p style="line-height: 1;"><span style="font-family: Arial, Helvetica, sans-serif;">Надеемся, Вам понравится новый материал.</span></p>
+</body>
+</html>
