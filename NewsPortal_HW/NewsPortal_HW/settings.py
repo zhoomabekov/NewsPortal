@@ -182,3 +182,9 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True                     # переходя по 
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+CELERY_BROKER_URL = 'redis://default:dkHroIb7saigvdrY0FlOOuglrWVHsM0a@redis-19177.c1.asia-northeast1-1.gce.cloud.redislabs.com:19177'
+CELERY_RESULT_BACKEND = 'redis://default:dkHroIb7saigvdrY0FlOOuglrWVHsM0a@redis-19177.c1.asia-northeast1-1.gce.cloud.redislabs.com:19177'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
