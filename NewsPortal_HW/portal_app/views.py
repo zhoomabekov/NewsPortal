@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Post, Category, CategorySubscriber, Subscriber
 from .filters import PostFilter
 from .forms import PostForm
+from .tasks import new_post_notification, hello
 
 
 class PostsList(PermissionRequiredMixin, ListView):
@@ -73,6 +74,7 @@ class PostCreate(PermissionRequiredMixin, CreateView):
             post.type = 'n'
         post.save()
         form.save_m2m()  # saving many-to-many relationships if any
+        new_post_notification.delay(post.id)
         return super().form_valid(form)
 
 

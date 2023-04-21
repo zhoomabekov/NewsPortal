@@ -16,40 +16,40 @@ import os
 load_dotenv()
 MY_EMAIL = os.getenv('MY_EMAIL')
 
-
-@receiver(m2m_changed, sender=Post.categories.through)
-def new_post_email_to_subscribers(sender, instance, action, pk_set, **kwargs):
-    if action == 'post_add':
-        title = instance.title
-        author_name = instance.author.user.username
-
-        for i in range(len(pk_set)):        # going through each of categories
-            category_id = list(pk_set)[i]
-            category = Category.objects.get(pk=category_id)
-
-            # Get the subscribers for the category of the post
-            subscribers = category.subscribers.all() #subscribers is a related name, defined in the Model
-            # Extract the email addresses from the subscribers
-            recipient_list = [subscriber.user.email for subscriber in subscribers]
-
-            html_content = render_to_string(
-                'new_post_email_to_subscribers.html',
-                {
-                    'post': instance,
-                    'category': category
-                }
-            )
-
-            msg = EmailMultiAlternatives(
-                subject=f'Новая статья в категории "{category.name}"',
-                body='К сожалению, возникли проблемы с рендерингом HTML',
-                # Body текст будет выслан, если не сработает HTML версия
-                from_email=MY_EMAIL + '@yandex.com',
-                to=recipient_list,  # это то же, что и recipients_list
-            )
-            msg.attach_alternative(html_content, "text/html")  # добавляем html
-
-            msg.send()  # отсылаем
+# Сигнал отключен, т.к. заменен на Celery
+# @receiver(m2m_changed, sender=Post.categories.through)
+# def new_post_email_to_subscribers(sender, instance, action, pk_set, **kwargs):
+#     if action == 'post_add':
+#         title = instance.title
+#         author_name = instance.author.user.username
+#
+#         for i in range(len(pk_set)):        # going through each of categories
+#             category_id = list(pk_set)[i]
+#             category = Category.objects.get(pk=category_id)
+#
+#             # Get the subscribers for the category of the post
+#             subscribers = category.subscribers.all() #subscribers is a related name, defined in the Model
+#             # Extract the email addresses from the subscribers
+#             recipient_list = [subscriber.user.email for subscriber in subscribers]
+#
+#             html_content = render_to_string(
+#                 'new_post_email_to_subscribers.html',
+#                 {
+#                     'post': instance,
+#                     'category': category
+#                 }
+#             )
+#
+#             msg = EmailMultiAlternatives(
+#                 subject=f'Новая статья в категории "{category.name}"',
+#                 body='К сожалению, возникли проблемы с рендерингом HTML',
+#                 # Body текст будет выслан, если не сработает HTML версия
+#                 from_email=MY_EMAIL + '@yandex.com',
+#                 to=recipient_list,  # это то же, что и recipients_list
+#             )
+#             msg.attach_alternative(html_content, "text/html")  # добавляем html
+#
+#             msg.send()  # отсылаем
 
 
 # Этот сигнал нужен для создания объекта Подписчик (если токого нет), когда пользователь логинится
