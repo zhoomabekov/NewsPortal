@@ -12,7 +12,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'weekly_notification_to_subscribers': {
         'task': 'portal_app.tasks.weekly_subscribers_notification',
-        'schedule': crontab(hour=10, minute=0, day_of_week='sunday'),
+        'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
         'args': (),
     },
 }
