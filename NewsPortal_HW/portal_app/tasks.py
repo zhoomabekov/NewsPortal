@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 
 from django.conf import settings
 from .models import Post, Category
+from django.utils import timezone
 
 
 @shared_task
@@ -52,6 +53,7 @@ def new_post_notification(post_id):
 @shared_task
 def weekly_subscribers_notification():
     category_count = Category.objects.all().count()
+    seven_days_ago = timezone.now() - datetime.timedelta(days=7)
 
     for i in range(1, category_count + 1):
         category = Category.objects.get(id=i)

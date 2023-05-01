@@ -2,10 +2,11 @@ from django.urls import path, include
 from .views import PostsList, PostsSearch, PostDetail, PostCreate, PostUpdate, PostDelete, PostsListInCategory, \
     SubscribeCategoryView
 from django.views.generic import RedirectView
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
-    #path('', RedirectView.as_view(url='accounts/')),  # instead of error page, it will redirect to the needed page
-    path('posts/', PostsList.as_view(), name='posts_list'),
+    # path('', RedirectView.as_view(url='accounts/')),  # instead of error page, it will redirect to the needed page
+    path('posts/', cache_page(60)(PostsList.as_view()), name='posts_list'),
     path('posts/<int:pk>', PostDetail.as_view(), name='post_detail'),
     path('posts/search/', PostsSearch.as_view(), name='posts_search_list'),
 

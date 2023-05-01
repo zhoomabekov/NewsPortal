@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import ForeignKey
@@ -74,6 +75,11 @@ class Post(models.Model):
     # Подсказать Django, какую страницу нужно открыть после создания инстанса через форму.
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
+
+    #переопределяем метод save для того, чтобы при изменениях объекта закешированная версия удалилась
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f'product-{self.pk}')
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
