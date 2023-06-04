@@ -72,27 +72,32 @@ def subscription_confirmation_email(sender, instance, **kwargs):
     send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
 
 @receiver(post_save, sender=User)
-def welcome_email(sender, instance, **kwargs):
-    html_content = render_to_string(
-        'account/welcome_new_user.html',
-        {
-            'user': instance,
-        }
-    )
+def welcome_email(sender, instance, created, **kwargs):
+    print("before if_created")
+    if created:
+        print("during if_created")
+        html_content = render_to_string(
+            'account/welcome_new_user.html',
+            {
+                'user': instance,
+            }
+        )
 
-    msg = EmailMultiAlternatives(
-        subject='Регистрация успешна!',
-        body=f'''{instance.username}, добро пожаловать в Новостной Портал!
-             Вы зарегистрировались при помощи почтового ящика: {instance.email}''',
-        #Body текст будет выслан, если не сработает HTML версия
-        from_email=MY_EMAIL + '@yandex.com',
-        to=[instance.email],  # это то же, что и recipients_list
-    )
-    msg.attach_alternative(html_content, "text/html")  # добавляем html
+        msg = EmailMultiAlternatives(
+            subject='Регистрация успешна!',
+            body=f'''{instance.username}, добро пожаловать в Новостной Портал!
+                 Вы зарегистрировались при помощи почтового ящика: {instance.email}''',
+            #Body текст будет выслан, если не сработает HTML версия
+            from_email=MY_EMAIL + '@yandex.com',
+            to=[instance.email],  # это то же, что и recipients_list
+        )
+        msg.attach_alternative(html_content, "text/html")  # добавляем html
 
-    msg.send()  # отсылаем
+        msg.send()  # отсылаем
 
-    return redirect(settings.LOGIN_URL)
+        return redirect(settings.LOGIN_URL)
+    print("after if_created")
+
 
 @receiver(pre_save, sender=Post)
 def limit_check(sender, instance, **kwargs):

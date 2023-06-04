@@ -1,0 +1,261 @@
+[2023-06-04 14:39:35,243] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 14:39:43,750] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 14:43:02,252] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 14:46:30,390] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 14:46:42,326] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 14:47:22,099] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 14:47:32,433] INFO basehttp "GET /category/1/ HTTP/1.1" 200 2212
+[2023-06-04 14:47:41,890] INFO basehttp "GET /category/4/ HTTP/1.1" 200 1973
+[2023-06-04 14:47:41,944] WARNING log Not Found: /category/4/assets/favicon.ico
+[2023-06-04 14:47:41,945] WARNING basehttp "GET /category/4/assets/favicon.ico HTTP/1.1" 404 4891
+[2023-06-04 14:47:44,014] INFO basehttp "POST /category/4/subscribe/ HTTP/1.1" 302 0
+[2023-06-04 14:47:44,031] INFO basehttp "GET /category/4/ HTTP/1.1" 200 2059
+[2023-06-04 15:33:10,029] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:33:11,829] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:35:00,705] INFO basehttp "GET /admin/ HTTP/1.1" 200 9508
+[2023-06-04 15:35:03,523] INFO basehttp "GET /admin/auth/user/ HTTP/1.1" 200 13497
+[2023-06-04 15:35:03,567] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 15:35:03,595] INFO basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[2023-06-04 15:35:03,619] INFO basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8985
+[2023-06-04 15:35:03,635] INFO basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 5698
+[2023-06-04 15:35:03,635] INFO basehttp "GET /static/admin/css/changelists.css HTTP/1.1" 200 6395
+[2023-06-04 15:35:03,670] INFO basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+[2023-06-04 15:35:03,674] INFO basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7902
+[2023-06-04 15:35:03,703] INFO basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[2023-06-04 15:35:03,707] INFO basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 288580
+[2023-06-04 15:35:03,776] INFO basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+[2023-06-04 15:35:03,808] INFO basehttp "GET /static/admin/js/filters.js HTTP/1.1" 200 966
+[2023-06-04 15:35:03,823] INFO basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+[2023-06-04 15:35:03,824] INFO basehttp "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[2023-06-04 15:35:03,825] INFO basehttp "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[2023-06-04 15:35:03,839] INFO basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[2023-06-04 15:36:20,715] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:36:22,082] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:36:26,906] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:37:05,755] INFO basehttp "GET /admin/auth/user/1/change/ HTTP/1.1" 200 25716
+[2023-06-04 15:37:05,816] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 15:37:05,851] WARNING log Not Found: /static/admin/js/SelectBox.js
+[2023-06-04 15:37:05,854] WARNING log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+[2023-06-04 15:37:05,855] WARNING log Not Found: /static/admin/js/SelectFilter2.js
+[2023-06-04 15:37:05,855] WARNING log Not Found: /static/admin/js/calendar.js
+[2023-06-04 15:37:05,877] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 15:37:05,880] WARNING log Not Found: /static/admin/css/forms.css
+[2023-06-04 15:37:05,914] WARNING basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 404 179
+[2023-06-04 15:37:05,938] WARNING basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 404 179
+[2023-06-04 15:37:05,954] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 15:37:05,963] WARNING basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 404 179
+[2023-06-04 15:37:06,002] WARNING basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 404 179
+[2023-06-04 15:37:06,022] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 15:37:06,047] WARNING basehttp "GET /static/admin/css/forms.css HTTP/1.1" 404 179
+[2023-06-04 15:37:06,061] INFO basehttp - Broken pipe from ('127.0.0.1', 51375)
+[2023-06-04 15:37:06,199] WARNING log Not Found: /static/admin/js/prepopulate_init.js
+[2023-06-04 15:37:06,210] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 15:37:06,227] WARNING log Not Found: /static/admin/img/icon-deletelink.svg
+[2023-06-04 15:37:06,237] INFO basehttp - Broken pipe from ('127.0.0.1', 51342)
+[2023-06-04 15:37:06,301] WARNING basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 404 179
+[2023-06-04 15:37:06,337] WARNING log Not Found: /static/admin/js/change_form.js
+[2023-06-04 15:37:06,361] WARNING basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 404 179
+[2023-06-04 15:37:06,390] INFO basehttp - Broken pipe from ('127.0.0.1', 51373)
+[2023-06-04 15:37:06,410] WARNING basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 404 179
+[2023-06-04 15:37:20,711] INFO basehttp "POST /admin/auth/user/1/change/ HTTP/1.1" 302 0
+[2023-06-04 15:37:20,759] INFO basehttp "GET /admin/auth/user/ HTTP/1.1" 200 13720
+[2023-06-04 15:37:20,797] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 15:37:20,803] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 15:37:20,806] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 15:37:20,819] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 15:37:20,835] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 15:37:51,875] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 15:38:06,586] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:38:56,989] INFO basehttp "GET /admin/auth/user/1/change/ HTTP/1.1" 200 25748
+[2023-06-04 15:38:57,030] WARNING log Not Found: /static/admin/js/calendar.js
+[2023-06-04 15:38:57,055] WARNING log Not Found: /static/admin/js/SelectBox.js
+[2023-06-04 15:38:57,058] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 15:38:57,059] WARNING log Not Found: /static/admin/js/SelectFilter2.js
+[2023-06-04 15:38:57,060] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 15:38:57,060] WARNING log Not Found: /static/admin/css/forms.css
+[2023-06-04 15:38:57,075] WARNING basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,084] WARNING basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,101] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,108] WARNING basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,129] WARNING log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+[2023-06-04 15:38:57,141] WARNING basehttp "GET /static/admin/css/forms.css HTTP/1.1" 404 179
+[2023-06-04 15:38:57,184] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 15:38:57,227] WARNING basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,258] WARNING log Not Found: /static/admin/js/prepopulate_init.js
+[2023-06-04 15:38:57,272] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,287] INFO basehttp - Broken pipe from ('127.0.0.1', 51432)
+[2023-06-04 15:38:57,288] WARNING log Not Found: /static/admin/js/change_form.js
+[2023-06-04 15:38:57,309] WARNING log Not Found: /static/admin/img/icon-deletelink.svg
+[2023-06-04 15:38:57,320] WARNING basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,335] INFO basehttp - Broken pipe from ('127.0.0.1', 51429)
+[2023-06-04 15:38:57,377] WARNING basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 404 179
+[2023-06-04 15:38:57,395] WARNING basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 404 179
+[2023-06-04 15:38:57,427] INFO basehttp - Broken pipe from ('127.0.0.1', 51431)
+[2023-06-04 15:39:30,835] INFO basehttp "POST /admin/auth/user/1/change/ HTTP/1.1" 302 0
+[2023-06-04 15:39:30,863] INFO basehttp "GET /admin/auth/user/ HTTP/1.1" 200 13719
+[2023-06-04 15:39:30,899] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 15:39:30,902] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 15:39:30,910] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 15:39:30,921] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 15:39:30,942] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 15:39:54,011] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 15:39:57,113] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:44:06,190] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:44:07,831] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:44:15,257] INFO basehttp "GET /category/2/ HTTP/1.1" 200 2209
+[2023-06-04 15:44:15,324] WARNING log Not Found: /category/2/assets/favicon.ico
+[2023-06-04 15:44:15,347] WARNING basehttp "GET /category/2/assets/favicon.ico HTTP/1.1" 404 179
+[2023-06-04 15:45:58,574] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:45:59,949] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:46:12,965] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:46:56,138] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:46:57,437] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:47:02,738] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 15:47:37,832] INFO basehttp "GET /posts/2 HTTP/1.1" 200 1630
+[2023-06-04 15:47:39,479] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:51:04,666] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:51:06,142] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:51:09,705] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 15:51:10,648] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:51:25,597] INFO basehttp "GET /posts/2 HTTP/1.1" 200 1630
+[2023-06-04 15:56:19,797] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 15:57:17,495] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:57:54,060] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 15:58:06,263] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 15:59:35,489] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 15:59:38,988] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:02:36,935] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 16:04:40,426] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:04:57,430] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 16:04:58,275] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 16:05:44,972] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 16:05:46,359] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:05:53,133] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 16:06:03,446] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 16:06:04,605] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 16:08:09,295] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 16:08:11,041] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:08:23,059] INFO basehttp "GET /category/1/ HTTP/1.1" 200 2212
+[2023-06-04 16:08:23,876] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 16:08:24,714] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 16:08:59,565] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 16:12:14,764] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:12:18,257] INFO basehttp "GET /category/1/ HTTP/1.1" 200 2212
+[2023-06-04 16:12:18,836] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 16:12:19,797] INFO basehttp "GET /posts/2 HTTP/1.1" 200 1630
+[2023-06-04 16:50:10,011] INFO basehttp "GET /admin/auth/user/1/change/ HTTP/1.1" 200 25747
+[2023-06-04 16:50:10,056] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:50:10,071] WARNING log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+[2023-06-04 16:50:10,075] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:50:10,081] WARNING log Not Found: /static/admin/js/calendar.js
+[2023-06-04 16:50:10,092] WARNING log Not Found: /static/admin/js/SelectBox.js
+[2023-06-04 16:50:10,093] WARNING log Not Found: /static/admin/js/SelectFilter2.js
+[2023-06-04 16:50:10,101] WARNING log Not Found: /static/admin/css/forms.css
+[2023-06-04 16:50:10,117] WARNING basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,161] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:50:10,166] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,184] WARNING basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,198] WARNING basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,216] WARNING basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,228] WARNING basehttp "GET /static/admin/css/forms.css HTTP/1.1" 404 179
+[2023-06-04 16:50:10,242] INFO basehttp - Broken pipe from ('127.0.0.1', 62768)
+[2023-06-04 16:50:10,254] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,324] WARNING log Not Found: /static/admin/img/icon-deletelink.svg
+[2023-06-04 16:50:10,325] INFO basehttp - Broken pipe from ('127.0.0.1', 62775)
+[2023-06-04 16:50:10,355] WARNING log Not Found: /static/admin/js/prepopulate_init.js
+[2023-06-04 16:50:10,374] WARNING log Not Found: /static/admin/js/change_form.js
+[2023-06-04 16:50:10,391] WARNING basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 404 179
+[2023-06-04 16:50:10,412] WARNING basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 404 179
+[2023-06-04 16:50:10,432] WARNING basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 404 179
+[2023-06-04 16:50:26,200] INFO basehttp "GET /admin/account/emailaddress/ HTTP/1.1" 200 12262
+[2023-06-04 16:50:26,239] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:50:26,241] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:50:26,270] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:26,279] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:50:26,297] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:31,763] INFO basehttp "GET /admin/auth/group/ HTTP/1.1" 200 10708
+[2023-06-04 16:50:31,804] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:50:31,808] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:50:31,821] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:50:31,832] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:31,853] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:33,753] INFO basehttp "GET /admin/auth/user/ HTTP/1.1" 200 13527
+[2023-06-04 16:50:33,792] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:50:33,802] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:50:33,809] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:50:33,817] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:50:33,840] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,482] INFO basehttp "GET /admin/auth/user/1/change/ HTTP/1.1" 200 25747
+[2023-06-04 16:52:40,520] WARNING log Not Found: /static/admin/js/SelectFilter2.js
+[2023-06-04 16:52:40,538] WARNING log Not Found: /static/admin/css/forms.css
+[2023-06-04 16:52:40,549] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:52:40,551] WARNING log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+[2023-06-04 16:52:40,551] WARNING log Not Found: /static/admin/js/calendar.js
+[2023-06-04 16:52:40,556] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:52:40,562] WARNING basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,579] WARNING basehttp "GET /static/admin/css/forms.css HTTP/1.1" 404 179
+[2023-06-04 16:52:40,604] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,622] WARNING basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,644] WARNING basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,677] WARNING log Not Found: /static/admin/js/SelectBox.js
+[2023-06-04 16:52:40,686] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:52:40,707] INFO basehttp - Broken pipe from ('127.0.0.1', 62833)
+[2023-06-04 16:52:40,724] INFO basehttp - Broken pipe from ('127.0.0.1', 62829)
+[2023-06-04 16:52:40,771] WARNING basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,777] WARNING log Not Found: /static/admin/js/prepopulate_init.js
+[2023-06-04 16:52:40,793] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,824] WARNING log Not Found: /static/admin/img/icon-deletelink.svg
+[2023-06-04 16:52:40,845] INFO basehttp - Broken pipe from ('127.0.0.1', 62832)
+[2023-06-04 16:52:40,867] WARNING basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 404 179
+[2023-06-04 16:52:40,897] WARNING log Not Found: /static/admin/js/change_form.js
+[2023-06-04 16:52:40,909] WARNING basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 404 179
+[2023-06-04 16:52:40,923] INFO basehttp - Broken pipe from ('127.0.0.1', 62834)
+[2023-06-04 16:52:40,941] WARNING basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 404 179
+[2023-06-04 16:54:01,196] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 16:55:24,696] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:55:27,701] INFO basehttp "GET /admin/auth/user/ HTTP/1.1" 200 13527
+[2023-06-04 16:55:27,751] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:55:27,780] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:55:28,533] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:55:30,447] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:55:31,122] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:55:39,384] INFO basehttp "GET /admin/auth/user/ HTTP/1.1" 200 13527
+[2023-06-04 16:55:39,423] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:55:39,432] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:55:40,993] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:55:41,559] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:55:42,186] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:55:44,222] INFO basehttp "GET /admin/auth/user/2/change/ HTTP/1.1" 200 25727
+[2023-06-04 16:55:44,275] WARNING log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+[2023-06-04 16:55:44,275] WARNING log Not Found: /static/admin/js/SelectBox.js
+[2023-06-04 16:55:44,290] WARNING log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+[2023-06-04 16:55:44,290] WARNING log Not Found: /static/admin/js/calendar.js
+[2023-06-04 16:55:44,304] INFO basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2023-06-04 16:55:44,925] WARNING log Not Found: /static/admin/css/forms.css
+[2023-06-04 16:55:45,516] WARNING basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 404 179
+[2023-06-04 16:55:46,439] WARNING basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 404 179
+[2023-06-04 16:55:47,043] WARNING basehttp "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 404 179
+[2023-06-04 16:55:47,617] WARNING basehttp "GET /static/admin/js/calendar.js HTTP/1.1" 404 179
+[2023-06-04 16:55:48,330] WARNING log Not Found: /static/admin/js/SelectFilter2.js
+[2023-06-04 16:55:48,979] WARNING basehttp "GET /static/admin/css/forms.css HTTP/1.1" 404 179
+[2023-06-04 16:55:49,578] WARNING log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+[2023-06-04 16:55:52,091] INFO basehttp - Broken pipe from ('127.0.0.1', 62939)
+[2023-06-04 16:55:52,788] WARNING basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 404 179
+[2023-06-04 16:55:54,247] WARNING basehttp "GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 404 179
+[2023-06-04 16:55:54,299] WARNING log Not Found: /static/admin/img/icon-deletelink.svg
+[2023-06-04 16:55:55,667] WARNING log Not Found: /static/admin/js/prepopulate_init.js
+[2023-06-04 16:55:56,351] WARNING log Not Found: /static/admin/js/change_form.js
+[2023-06-04 16:55:57,015] WARNING basehttp "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 404 179
+[2023-06-04 16:55:57,626] WARNING basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 404 179
+[2023-06-04 16:55:58,194] WARNING basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 404 179
+[2023-06-04 16:55:59,473] INFO basehttp - Broken pipe from ('127.0.0.1', 62937)
+[2023-06-04 16:56:00,156] INFO basehttp - Broken pipe from ('127.0.0.1', 62906)
+[2023-06-04 16:56:12,791] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 16:56:13,886] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 16:56:16,974] INFO basehttp "GET /category/2/ HTTP/1.1" 200 2209
+[2023-06-04 16:59:03,058] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.
+[2023-06-04 16:59:04,732] INFO autoreload Watching for file changes with StatReloader
+[2023-06-04 16:59:10,763] INFO basehttp "GET /category/1/ HTTP/1.1" 200 2212
+[2023-06-04 16:59:12,298] INFO basehttp "GET /posts/ HTTP/1.1" 200 2738
+[2023-06-04 16:59:13,734] INFO basehttp "GET /posts/3 HTTP/1.1" 200 1720
+[2023-06-04 17:01:52,024] INFO autoreload C:\Users\user\Documents\GitHub\NewsPortal\NewsPortal_HW\NewsPortal_HW\settings.py changed, reloading.

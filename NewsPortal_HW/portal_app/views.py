@@ -10,7 +10,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Post, Category, CategorySubscriber, Subscriber
 from .filters import PostFilter
 from .forms import PostForm
-from .tasks import new_post_notification, hello
+from .tasks import new_post_notification
 
 
 class PostsList(PermissionRequiredMixin, ListView):
@@ -66,7 +66,6 @@ class PostDetail(PermissionRequiredMixin, DetailView):
         if not obj:
             obj = super().get_object(queryset=self.queryset)
             cache.set(f'product-{self.kwargs["pk"]}', obj)
-
         return obj
 
 
@@ -158,3 +157,10 @@ def login_view(request):
     else:
         # ...render login form...
         return render(request, 'login.html', context)
+
+class Testtt(PermissionRequiredMixin, ListView):
+    permission_required = ('portal_app.view_post')
+    model = Post
+    template_name = 'testtt.html'
+    context_object_name = 'posts_testtt'
+    paginate_by = 10

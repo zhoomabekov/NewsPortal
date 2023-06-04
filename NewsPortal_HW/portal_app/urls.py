@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import PostsList, PostsSearch, PostDetail, PostCreate, PostUpdate, PostDelete, PostsListInCategory, \
-    SubscribeCategoryView
+    SubscribeCategoryView, Testtt
 from django.views.generic import RedirectView
 from django.views.decorators.cache import cache_page
 
@@ -20,4 +20,6 @@ urlpatterns = [
 
     path('category/<int:category_id>/', PostsListInCategory.as_view(), name='posts_in_category'),
     path('category/<int:category_id>/subscribe/', SubscribeCategoryView.as_view(), name='subscribe_category'),
+
+    path('testtt/', Testtt.as_view(), name='posts_testtt_list'),
 ]

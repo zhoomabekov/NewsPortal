@@ -9,14 +9,15 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import logging
 from pathlib import Path
 import os
+
+from django.conf import settings
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -30,8 +31,12 @@ MY_PASSWORD = os.getenv('MY_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ADMINS = [
+    ('user', 'zhoomabekov@yandex.com'),
+    ('Galym', 'gm.zhumabekov@gmail.com'),
+]
 
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -61,6 +66,15 @@ INSTALLED_APPS = [
     'django_apscheduler',
 ]
 
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 SITE_ID = 1  # этот параметр важен для приложения django.contrib.sites
 
@@ -78,6 +92,34 @@ MIDDLEWARE = [
     # 'django.middleware.cache.UpdateCacheMiddleware',
     # 'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+WSGI_APPLICATION = 'NewsPortal_HW.wsgi.application'
+
+# Password validation
+# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 ROOT_URLCONF = 'NewsPortal_HW.urls'
@@ -100,44 +142,6 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
-WSGI_APPLICATION = 'NewsPortal_HW.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -153,12 +157,11 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/posts/'
@@ -172,7 +175,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-#Чтобы allauth распознал нашу форму как ту, что должна выполняться вместо формы по умолчанию,
+# Чтобы allauth распознал нашу форму как ту, что должна выполняться вместо формы по умолчанию,
 # необходимо добавить строчку в файл настроек проекта settings.py:
 ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
 
@@ -182,8 +185,10 @@ EMAIL_HOST_USER = MY_EMAIL
 EMAIL_HOST_PASSWORD = MY_PASSWORD
 EMAIL_USE_SSL = True
 
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@yandex.com'    # allauth будет использовать его
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True                     # переходя по ссылке из имейла не нужно дополнительно кликать на что-то
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@yandex.com'  # allauth будет использовать его
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True  # переходя по ссылке из имейла не нужно дополнительно кликать на что-то
+
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
@@ -194,12 +199,114 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-#кэширование в фаловой системе
+# кэширование в файловой системе
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
-        'TIMEOUT': 10, #by default the value is 300 sec
+        'TIMEOUT': 10,  # by default the value is 300 sec
 
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'style': '{',
+    'formatters': {
+        'base': {
+            'format': '[%(asctime)s] %(levelname)s %(message)s'
+        },
+        'warning': {
+            'format': '[%(asctime)s] %(levelname)s %(message)s %(pathname)s'
+        },
+        'error': {
+            'format': '%[%(asctime)s] %(levelname)s %(message)s %(pathname)s %(exc_info)s'
+        },
+        'general': {
+            'format': '[%(asctime)s] %(levelname)s %(module)s %(message)s'
+        }
+
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+
+    },
+    'handlers': {
+        'console_debug': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'base'
+        },
+        'console_warning': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'warning'
+        },
+        'console_error': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'error'
+        },
+        'general_logfile': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'formatter': 'general'
+        },
+        'errors_logfile': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.FileHandler',
+            'filename': 'errors.log',
+            'formatter': 'error'
+        },
+        'security_logfile': {
+            'class': 'logging.FileHandler',
+            'filename': 'security.log',
+            'formatter': 'general'
+        },
+        'email_to_admin': {
+            #SERVER_EMAIL is used as a sender mailbox
+            'level': 'DEBUG',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'warning'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console_debug', 'console_warning', 'console_error', 'general_logfile'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['errors_logfile', 'email_to_admin'],
+            'propagate': True
+        },
+        'django.server': {
+            'handlers': ['errors_logfile', 'email_to_admin'],
+            'propagate': True
+        },
+        'django.template': {
+            'handlers': ['errors_logfile'],
+            'propagate': True
+        },
+        'django.db.backends': {
+            'handlers': ['errors_logfile'],
+            'propagate': True
+        },
+        'django.security': {
+            'handlers': ['security_logfile'],
+            'propagate': True
+        },
     }
 }

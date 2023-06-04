@@ -1,0 +1,1 @@
+[2023-06-04 18:01:59,362] WARNING log Forbidden (CSRF token from POST incorrect.): /accounts/signup/
