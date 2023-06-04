@@ -277,7 +277,7 @@ LOGGING = {
         },
         'email_to_admin': {
             #SERVER_EMAIL is used as a sender mailbox
-            'level': 'DEBUG',
+            'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
             'formatter': 'warning'
